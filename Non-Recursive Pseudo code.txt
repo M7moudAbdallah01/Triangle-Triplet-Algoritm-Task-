@@ -1,0 +1,7 @@
+Sort array A
+
+for i from 0 to N-3:
+    if A[i] + A[i+1] > A[i+2]:
+        return 1
+
+return 0
