@@ -11,6 +11,5 @@ def has_triangle_recursive(A):
     A.sort()
     return check_triangle(A, 0)
 
-# Example
 A = [10, 2, 5, 1, 8, 20]
-print(has_triangle_recursive(A))  # Output: 1
+print(has_triangle_recursive(A))  
