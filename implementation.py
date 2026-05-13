@@ -1,3 +1,4 @@
+# (non-recursive)
 def has_triangle(A):
     A.sort()
 
@@ -7,7 +8,8 @@ def has_triangle(A):
 
     return 0
 
-
+#===========================================================
+# (recursive)
 def check_triangle(A, i):
     if i > len(A) - 3:
         return 0
@@ -23,11 +25,13 @@ def has_triangle_recursive(A):
     return check_triangle(A, 0)
 
 
-# Data
-A = [10, 2, 5, 1, 8, 20]
+#===========================================================
 
-# Iterative Result
-print("Iterative:", has_triangle(A.copy()))
+# Data
+A = [10, 50 , 1]
+
+# non-recursive Result
+print("non-recursive:", has_triangle(A.copy()))
 
 # Recursive Result
 print("Recursive:", has_triangle_recursive(A.copy()))
