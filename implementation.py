@@ -1,25 +1,34 @@
-# (sorting)
-def insertionSort(A):
-    for i in range(1, len(A)):
-        key = A[i]  
-        j = i - 1
-        
-        while j >= 0 and key < A[j]:
-            A[j + 1] = A[j]
-            j -= 1
-        
-        A[j + 1] = key
-    return A
-#===========================================================
-# (non-recursive)
-def has_triangle(A):
-    insertionSort(A)
+def triangle(nums):
 
-    for i in range(len(A) - 2):
-        if A[i] + A[i + 1] > A[i + 2]:
+    n = len(nums)
+
+    for i in range(1, n):
+
+        key = nums[i]
+        j = i - 1
+
+        while j >= 0 and nums[j] > key:
+            nums[j + 1] = nums[j]
+            j -= 1
+
+        nums[j + 1] = key
+
+    for i in range(n - 2):
+
+        if nums[i] + nums[i + 1] > nums[i + 2]:
             return 1
 
     return 0
+
+
+nums1 = [10, 50, 1]
+print(triangle(nums1))  
+
+nums2 = [10, 2, 5, 1, 8, 20]
+print(triangle(nums2))  
+
+
+
 
 #===========================================================
 def mergeSort(A):
