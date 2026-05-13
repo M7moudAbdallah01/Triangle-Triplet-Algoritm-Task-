@@ -1,85 +1,95 @@
-# (sorting)
-def insertionSort(A):
-    for i in range(1, len(A)):
-        key = A[i]  
-        j = i - 1
-        
-        while j >= 0 and key < A[j]:
-            A[j + 1] = A[j]
-            j -= 1
-        
-        A[j + 1] = key
-    return A
-#===========================================================
-# (non-recursive)
-def has_triangle(A):
-    insertionSort(A)
+# Non-Recursive
 
-    for i in range(len(A) - 2):
-        if A[i] + A[i + 1] > A[i + 2]:
+def triangle(nums):
+
+    n = len(nums)
+
+    for i in range(1, n):
+
+        key = nums[i]
+        j = i - 1
+
+        while j >= 0 and nums[j] > key:
+            nums[j + 1] = nums[j]
+            j -= 1
+
+        nums[j + 1] = key
+
+    for i in range(n - 2):
+
+        if nums[i] + nums[i + 1] > nums[i + 2]:
             return 1
 
     return 0
 
-#===========================================================
-def mergeSort(A):
-    if len(A) > 1:
-        mid = len(A) // 2
-        L = A[:mid]
-        R = A[mid:]
 
-        # Recursive calls to split the sub-arrays
-        mergeSort(L)
-        mergeSort(R)
+#===========================================================
+# Recursive
+
+def merge_sort(nums):
+
+    if len(nums) > 1:
+
+        mid = len(nums) // 2
+
+        left = nums[:mid]
+        right = nums[mid:]
+
+        merge_sort(left)
+        merge_sort(right)
 
         i = j = k = 0
 
-        # 2. Merge Phase: Sorting and merging the sub-arrays
-        while i < len(L) and j < len(R):
-            if L[i] < R[j]:
-                A[k] = L[i]
+        while i < len(left) and j < len(right):
+
+            if left[i] < right[j]:
+                nums[k] = left[i]
                 i += 1
             else:
-                A[k] = R[j]
+                nums[k] = right[j]
                 j += 1
+
             k += 1
 
-        # Checking if any element was left in L or R
-        while i < len(L):
-            A[k] = L[i]
+        while i < len(left):
+            nums[k] = left[i]
             i += 1
             k += 1
 
-        while j < len(R):
-            A[k] = R[j]
+        while j < len(right):
+            nums[k] = right[j]
             j += 1
             k += 1
-    return A
 
-# (recursive)
-def check_triangle(A, i):
-    if i > len(A) - 3:
+
+def check_triangle(nums, i):
+
+    if i > len(nums) - 3:
         return 0
 
-    if A[i] + A[i + 1] > A[i + 2]:
+    if nums[i] + nums[i + 1] > nums[i + 2]:
         return 1
 
-    return check_triangle(A, i + 1)
+    return check_triangle(nums, i + 1)
 
 
-def has_triangle_recursive(A):
-    mergeSort(A)
-    return check_triangle(A, 0)
+def triangle_recursive(nums):
+
+    merge_sort(nums)
+
+    return check_triangle(nums, 0)
 
 
 #===========================================================
+# User Input
 
-# Data
 user_input = input("Enter numbers separated by spaces: ")
-A = [int(x) for x in user_input.split()]
 
-# non-recursive Result
-print("non-recursive:", has_triangle(A.copy()))
+nums = [int(x) for x in user_input.split()]
 
-# Recursive Result
-print("Recursive:", has_triangle_recursive(A.copy()))
+#===========================================================
+# Results
+
+print("Non-Recursive :", triangle(nums.copy()))
+
+print("Recursive :", triangle_recursive(nums.copy()))
