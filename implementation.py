@@ -1,10 +1,14 @@
 # (sorting)
 def insertionSort(A):
-    n = len(A)
-    for i in range(n):
-        for j in range(0, n - i - 1):
-            if A[j] > A[j + 1]:
-                A[j], A[j + 1] = A[j + 1], A[j]
+    for i in range(1, len(A)):
+        key = A[i]  
+        j = i - 1
+        
+        while j >= 0 and key < A[j]:
+            A[j + 1] = A[j]
+            j -= 1
+        
+        A[j + 1] = key
     return A
 #===========================================================
 # (non-recursive)
