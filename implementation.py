@@ -1,6 +1,13 @@
+def sortArray(A):
+    n = len(A)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if A[j] > A[j + 1]:
+                A[j], A[j + 1] = A[j + 1], A[j]
+    return A
 # (non-recursive)
 def has_triangle(A):
-    A.sort()
+    sortArray(A)
 
     for i in range(len(A) - 2):
         if A[i] + A[i + 1] > A[i + 2]:
@@ -21,7 +28,7 @@ def check_triangle(A, i):
 
 
 def has_triangle_recursive(A):
-    A.sort()
+    sortArray(A)
     return check_triangle(A, 0)
 
 
