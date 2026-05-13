@@ -1,3 +1,4 @@
+# Non-Recursive 
 def triangle(nums):
 
     n = len(nums)
@@ -20,74 +21,77 @@ def triangle(nums):
 
     return 0
 
+# Non-Recursive Result
 
 nums1 = [10, 50, 1]
-print(triangle(nums1))  
+print("Non-Recursive (Ex1) :" ,triangle(nums1))  
 
 nums2 = [10, 2, 5, 1, 8, 20]
-print(triangle(nums2))  
-
-
+print("Non-Recursive (Ex2) :"  , triangle(nums2))  
 
 
 #===========================================================
-def mergeSort(A):
-    if len(A) > 1:
-        # 1. Division Phase: Finding the mid and splitting the array
-        mid = len(A) // 2
-        L = A[:mid]
-        R = A[mid:]
+# Recursive
 
-        # Recursive calls to split the sub-arrays
-        mergeSort(L)
-        mergeSort(R)
+def merge_sort(nums):
+
+    if len(nums) > 1:
+
+        mid = len(nums) // 2
+
+        left = nums[:mid]
+        right = nums[mid:]
+
+        merge_sort(left)
+        merge_sort(right)
 
         i = j = k = 0
 
-        # 2. Merge Phase: Sorting and merging the sub-arrays
-        while i < len(L) and j < len(R):
-            if L[i] < R[j]:
-                A[k] = L[i]
+        while i < len(left) and j < len(right):
+
+            if left[i] < right[j]:
+                nums[k] = left[i]
                 i += 1
             else:
-                A[k] = R[j]
+                nums[k] = right[j]
                 j += 1
+
             k += 1
 
-        # Checking if any element was left in L or R
-        while i < len(L):
-            A[k] = L[i]
+        while i < len(left):
+            nums[k] = left[i]
             i += 1
             k += 1
 
-        while j < len(R):
-            A[k] = R[j]
+        while j < len(right):
+            nums[k] = right[j]
             j += 1
             k += 1
-    return A
 
-# (recursive)
-def check_triangle(A, i):
-    if i > len(A) - 3:
+def check_triangle(nums, i):
+
+    if i > len(nums) - 3:
         return 0
 
-    if A[i] + A[i + 1] > A[i + 2]:
+    if nums[i] + nums[i + 1] > nums[i + 2]:
         return 1
 
-    return check_triangle(A, i + 1)
+    return check_triangle(nums, i + 1)
 
 
-def has_triangle_recursive(A):
-    mergeSort(A)
-    return check_triangle(A, 0)
 
-#===========================================================
 
-# Data
-A = [10, 50 , 1]
+def triangle_recursive(nums):
 
-# non-recursive Result
-print("non-recursive:", has_triangle(A.copy()))
+    merge_sort(nums)
 
-# Recursive Result
-print("Recursive:", has_triangle_recursive(A.copy()))
+    return check_triangle(nums, 0)
+
+
+# Results
+
+nums1 = [10, 50, 1]
+print("Recursive (Ex1):", triangle_recursive(nums1))
+
+nums2 = [10, 2, 5, 1, 8, 20]
+print("Recursive (Ex2):", triangle_recursive(nums2))
