@@ -1,3 +1,4 @@
+# (sorting)
 def sortArray(A):
     n = len(A)
     for i in range(n):
@@ -5,6 +6,7 @@ def sortArray(A):
             if A[j] > A[j + 1]:
                 A[j], A[j + 1] = A[j + 1], A[j]
     return A
+#===========================================================
 # (non-recursive)
 def has_triangle(A):
     sortArray(A)
